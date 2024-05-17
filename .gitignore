@@ -10,7 +10,7 @@
 # production
 /build
 /_POSTS/01.*
-/_POSTS/02.*
+# /_POSTS/02.*
 /_POSTS/03.*
 /_POSTS/04.*
 /_POSTS/05.*
