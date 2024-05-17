@@ -26,7 +26,7 @@ export default function PostPage({ data, children }: { data: any; children: any 
   // const PostPage: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { open, setOpen } = useSidebarStore()
 
-  console.log('data : ', data)
+  // console.log('data : ', data)
   //   console.log('children : ', children)
   //   console.log('body : ', data.mdx.body)
   //   console.log('data.mdx : ', data.mdx.frontmatter.title)
@@ -43,7 +43,7 @@ export default function PostPage({ data, children }: { data: any; children: any 
   const siteTitle: string = siteMetadata?.title || `Title`
   const toc = parseToc(body)
 
-  console.log('relatedPosts : ', relatedPosts)
+  // console.log('relatedPosts : ', relatedPosts)
 
   return (
     <Layout title={siteTitle}>

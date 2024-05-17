@@ -11,12 +11,8 @@
     "dev": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
-    "build-ios": "OUTPUT_DIR=pub_nas/pub gatsby build",
-    "build-win": "cross-env OUTPUT_DIR=pub_nas/pub gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "clean-ios": "gatsby clean && find ./pub_nas/pub -delete",
-    "clean-win": "gatsby clean && del /s /q ./pub_nas/pub",
     "docker": "docker stop stories-blog-go && docker rm stories-blog-go && docker rmi junipub/stories-blog && gatsby build && docker build -t junipub/stories-blog . && docker run -d -p 80:80 --name stories-blog-go junipub/stories-blog && docker push junipub/stories-blog",
     "docker-first": "gatsby build && docker build -t junipub/stories-blog . && docker run -d -p 80:80 --name stories-blog-go junipub/stories-blog && docker push junipub/stories-blog",
     "typecheck": "tsc --noEmit"
