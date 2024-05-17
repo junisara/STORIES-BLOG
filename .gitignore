@@ -9,15 +9,15 @@
 
 # production
 /build
-/_POSTS/01.*
+# /_POSTS/01.*
 # /_POSTS/02.*
-/_POSTS/03.*
-/_POSTS/04.*
-/_POSTS/05.*
-/_POSTS/06.*
-/_POSTS/07.*
-/_POSTS/08.*
-/_POSTS/09.*
+# /_POSTS/03.*
+# /_POSTS/04.*
+# /_POSTS/05.*
+# /_POSTS/06.*
+# /_POSTS/07.*
+# /_POSTS/08.*
+# /_POSTS/09.*
 
 # misc
 /.pnp
