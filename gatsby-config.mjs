@@ -212,39 +212,4 @@ const config = {
   ],
 }
 
-// const algoliaQuery = `
-//   query {
-//     pages: allSitePage {
-//       nodes {
-//         # querying id is required
-//         id
-//         component
-//         path
-//         componentChunkName
-//         jsonName
-//         internal {
-//           # querying internal.contentDigest is required
-//           contentDigest
-//           type
-//           owner
-//         }
-//       }
-//     }
-//   }
-// `
-
-// const queries = [
-//   {
-//     query: algoliaQuery,
-//     queryVariables: {}, // optional. Allows you to use graphql query variables in the query
-//     transformer: ({ data }) => data.pages.nodes, // optional
-//     indexName: 'index name to target', // overrides main index name, optional
-//     settings: {
-//       // optional, any index settings
-//       // Note: by supplying settings, you will overwrite all existing settings on the index
-//     },
-//     mergeSettings: false, // optional, defaults to false. See notes on mergeSettings below
-//   },
-// ]
-
 export default config
