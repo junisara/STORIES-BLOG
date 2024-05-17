@@ -43,19 +43,15 @@
     /* --font-family-serif: "Noto Serif KR", serif; */
 
     --font-family-base: 'Noto Sans KR Variable', sans-serif;
-    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-      'Liberation Mono', 'Courier New';
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New';
     --font-family-number: Geneva, Tahoma;
-    --font-family-mobile: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕',
-      sans-serif;
+    --font-family-mobile: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
 
     --font-size-base: 1rem;
     --font-size-2xs: calc(var(--font-size-base) * 0.65);
     --font-size-xs: calc(var(--font-size-base) * 0.775);
     --font-size-sm: calc(var(--font-size-base) * 0.97);
-    --font-size-lg: calc(
-      var(--font-size-base) * 1.15
-    ); /* 본문(Markdown)의 기본 글씨크기 */
+    --font-size-lg: calc(var(--font-size-base) * 1.15); /* 본문(Markdown)의 기본 글씨크기 */
     --font-size-xl: calc(var(--font-size-base) * 1.5);
     --font-size-2xl: calc(var(--font-size-base) * 1.75);
 
@@ -124,8 +120,8 @@
     --accent-foreground: #0677e9;
 
     --color-text1: #909090; /* 기본 텍스트 색상 */
-    --color-text2: #eeeeee; /* 서브 텍스트 색상 */
-    --color-text3: #ffffff; /* 강조 텍스트 색상 */
+    --color-text2: #666666; /* 서브 텍스트 색상 */
+    --color-text3: #f5f5f5; /* 강조 텍스트 색상 */
     --color-gray1: #d3d3d3;
     --color-gray2: #a3a3a3;
 
@@ -151,8 +147,8 @@
     /* ************************** */
     /*         Components         */
     /* ************************** */
-    --card: #020817;
-    --card-foreground: #f5f5f5;
+    --card: #202020;
+    --card-foreground: #a2a2a2;
 
     --code: #444444;
     --code-foreground: #f2f2f2;
@@ -194,9 +190,7 @@
     --font-size-2xs: calc(var(--font-size-base) * 0.55);
     --font-size-xs: calc(var(--font-size-base) * 0.65);
     --font-size-sm: calc(var(--font-size-base) * 0.95);
-    --font-size-lg: calc(
-      var(--font-size-base) * 1
-    ); /* 본문(Markdown)의 기본 글씨크기 */
+    --font-size-lg: calc(var(--font-size-base) * 1); /* 본문(Markdown)의 기본 글씨크기 */
     --font-size-xl: calc(var(--font-size-base) * 1.2);
     --font-size-2xl: calc(var(--font-size-base) * 1.5);
   }

@@ -12,6 +12,7 @@ import { useSidebarStore, useThemeModeStore } from '@/stores/common-store'
 import kebabCase from 'lodash.kebabcase'
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { MDXProvider } from '@mdx-js/react'
+import PostRelated from '@/components/Detail/post-related '
 const shortcodes = { Link } // Provide common components here
 
 type DataProps = {
@@ -25,7 +26,7 @@ export default function PostPage({ data, children }: { data: any; children: any 
   // const PostPage: React.FC<PageProps<DataProps>> = ({ data, children }) => {
   const { open, setOpen } = useSidebarStore()
 
-  //   console.log('data : ', data)
+  // console.log('data : ', data)
   //   console.log('children : ', children)
   //   console.log('body : ', data.mdx.body)
   //   console.log('data.mdx : ', data.mdx.frontmatter.title)
@@ -38,8 +39,11 @@ export default function PostPage({ data, children }: { data: any; children: any 
   const tags = data.mdx.frontmatter.taxonomy.tag
   const body = data.mdx.body
   const currentCategory = etcmatter.currentCategory
+  const relatedPosts = data.allMdx.nodes
   const siteTitle: string = siteMetadata?.title || `Title`
   const toc = parseToc(body)
+
+  // console.log('relatedPosts : ', relatedPosts)
 
   return (
     <Layout title={siteTitle}>
@@ -94,6 +98,7 @@ export default function PostPage({ data, children }: { data: any; children: any 
             )}
           </div>
         </div>
+        <PostRelated relatedPosts={relatedPosts} />
       </section>
     </Layout>
   )
@@ -113,7 +118,7 @@ export const Head: HeadFC<DataProps> = ({ data }) => {
 }
 
 export const query = graphql`
-  query BlogPostDetail($postId: String!, $previousId: String, $nextId: String) {
+  query BlogPostDetail($postId: String!, $previousId: String, $nextId: String, $currentCategory: String) {
     site {
       siteMetadata {
         title
@@ -199,6 +204,26 @@ export const query = graphql`
       }
       internal {
         contentFilePath
+      }
+    }
+    allMdx(filter: { fields: { currentCategory: { eq: $currentCategory } } }, limit: 6) {
+      nodes {
+        frontmatter {
+          title
+          postId
+          thumbnail {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, width: 240, height: 160, quality: 85)
+            }
+          }
+        }
+        fields {
+          firstImageUrl {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, width: 240, height: 160, quality: 85)
+            }
+          }
+        }
       }
     }
   }

@@ -56,6 +56,9 @@ export const createPages = async ({ graphql, actions, reporter }) => {
             internal {
               contentFilePath
             }
+            fields {
+              currentCategory
+            }
           }
           next {
             id
@@ -143,6 +146,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousId = index === 0 ? null : post.previous.id
       const nextId = index === posts.length - 1 ? null : post.next.id
+      const currentCategory = post.node.fields.currentCategory
 
       createPage({
         path: `/${post.node.frontmatter.postId}`,
@@ -151,6 +155,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
           postId: post.node.frontmatter.postId,
           nextId,
           previousId,
+          currentCategory,
         },
       })
     })

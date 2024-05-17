@@ -48,10 +48,10 @@ const PostList: React.FC<DataProps> = ({ posts, currentCategory, currentTag }) =
           <Card key={post.id} className="mb-3">
             <Link to={'/' + post.frontmatter.postId} itemProp="url">
               <CardHeader className="pb-4">
-                <CardDescription>
+                <CardDescription className="text-colorText2">
                   <small>{timeFormat(post.frontmatter.datePublished)}</small>
                 </CardDescription>
-                <CardTitle>{title}</CardTitle>
+                <CardTitle className="text-colorText3">{title}</CardTitle>
               </CardHeader>
               <CardContent>
                 {frontImage && <GatsbyImage image={frontImage} alt="썸네일" className="float-left mr-5" />}
