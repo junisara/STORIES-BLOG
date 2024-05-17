@@ -1,23 +1,44 @@
-# build output
-dist
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-node_modules/
-.snowpack/
+/.cache
+/.SynologyWorkingDirectory
+/node_modules
+/public
+/pub_nas
 
-# logs
+# production
+/build
+/_POSTS/01.*
+/_POSTS/02.*
+/_POSTS/03.*
+/_POSTS/04.*
+/_POSTS/05.*
+/_POSTS/06.*
+/_POSTS/07.*
+/_POSTS/08.*
+/_POSTS/09.*
+
+# misc
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+.DS_Store
+*.pem
+*.ini
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# environment variables
-.env
-.env.production
+# local env files
+.env*.local
 
-# macOS-specific files
-.DS_Store
+# vercel
+.vercel
 
-_old/
-
-# Local Netlify folder
-.netlify
+# typescript
+# *.tsbuildinfo
+# next-env.d.ts
+# src/gatsby-types.d.ts

@@ -1,0 +1,17 @@
+_POSTS/
+node_modules/
+src/
+static/
+.git/
+.dockerignore
+.gitignore
+components.json
+Dockerfile
+gatsby-browser.js
+gatsby-config.ts
+gatsby-node.ts
+postcss.config.js
+tailwind.config.ts
+tsconfig.json
+npm-debug.log
+README.md

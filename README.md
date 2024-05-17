@@ -1,47 +1,81 @@
-![Netlify examples](netlify-badge-examples.png)
+<p align="center">
+  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts">
+    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
+  </a>
+</p>
+<h1 align="center">
+  Gatsby Minimal TypeScript Starter
+</h1>
 
-# Netlify Feature Tour
+## UI 컴포넌트
 
-**Access this demo site**: https://feature-tour.netlify.app
+> https://ui.shadcn.com > https://www.radix-ui.com
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/fad6792e-1c44-44db-bd79-ea74b42b0f89/deploy-status)](https://app.netlify.com/sites/feature-tour/deploys)
+`ui.shadcn.com`는 `tailwindcss`와 `@radix-ui`를 활용하여 UI컴포넌트를 사용할 수 있습니다. 그래서 ui.shadcn.com를 활용하면 됩니다.
+npx shadcn-ui@latest init를 사용하여 설치시 인증서 오류문제가 발생할 수 있습니다.
+프로덕션 환경이 아니라면 `NODE_TLS_REJECT_UNAUTHORIZED=0`를 사용하여 우회 설치할 수 있습니다.
 
-## About this example site
+> 예시 : `NODE_TLS_REJECT_UNAUTHORIZED=0 npx shadcn-ui@latest init`
+> 예시 : `NODE_TLS_REJECT_UNAUTHORIZED=0 npx shadcn-ui@latest add card`
 
-This site provides a path to get started learning about Netlify features.
+## Icon 사용
 
-- 📚 [Docs Getting Started Tutorial](https://docs.netlify.com/get-started/?utm_medium=social&utm_source=github&utm_campaign=devex-ph&utm_content=devex-examples)
+lucide에서 아이콘을 사용합니다. `lucide-react`
 
-## Speedily deploy your own version
+> https://lucide.dev/icons
 
-Deploy your own version of this example site by selecting the Deploy to Netlify Button below. This will automatically:
+## 핵심 수정사항
 
-- Clone a copy of this repo to your own GitHub account
-- Create a new project in your [Netlify account](https://app.netlify.com/?utm_medium=social&utm_source=github&utm_campaign=devex&utm_content=devex-examples), linked to your new repo
-- Create an automated deployment pipeline to watch for changes on your repo
-- Build and deploy your new site
+---
 
-[![Deploy To Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/netlify-feature-tour&utm_medium=social&utm_source=github&utm_campaign=devex&utm_content=devex-examples)
+- md파일
 
-## Install and run this example locally
+  - `class`를 `className` 로 일괄변경
+  - `allowfullscreen`를 `allowFullScreen` 로 일괄변경
 
-You can clone this example repo to explore its features and implementation and to run it locally.
+- common은 `Common`으로 설정함
 
-```shell
+## 특정 오류 사항
 
-# 1. Clone the repository to your local development environment
-git clone git@github.com:netlify/feature-tour.git
+---
 
-# 2. Move into the project directory
-cd feature-tour
+## 🚀 Quick start
 
-# 3. Install code dependencies
-npm install
+1.  **Create a Gatsby site.**
 
-# 4. Install the Netlify CLI to let you locally serve your site using Netlify's features
-npm install -g netlify-cli
+    Use the Gatsby CLI to create a new site, specifying the minimal TypeScript starter.
 
-# 5. Serve your site using Netlify Dev
-netlify dev
+    ```shell
+    # create a new Gatsby site using the minimal TypeScript starter
+    npm init gatsby -- -ts
+    ```
 
-```
+2.  **Start developing.**
+
+    Navigate into your new site’s directory and start it up.
+
+    ```shell
+    cd my-gatsby-site/
+    npm run develop
+    ```
+
+3.  **Open the code and start customizing!**
+
+    Your site is now running at http://localhost:8000!
+
+    Edit `src/pages/index.tsx` to see your site update in real-time!
+
+4.  **Learn more**
+
+    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter-ts)
+
+## 🚀 Quick start (Netlify)
+
+Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+
+[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal-ts)

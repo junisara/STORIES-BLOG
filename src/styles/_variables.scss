@@ -1,0 +1,121 @@
+// @import "/src/styles/globals.css"; // css 로 설정한 변수를 SCSS에서 활용할 수 있게 불러옴
+
+// 아래의 설정으로 css변수를 그대로 scss 변수로 동일하게 사용할 수 있음
+// globals.css 에서 색상을 설정함
+// 신규로 변수를 만들때는 아래 3개의 파일에 모두 추가해 줘야 함
+//   - _variables.scss,
+//   - globals.css,
+//   - tailwind.config.ts
+//
+/* Color */
+$background: var(--background);
+$foreground: var(--foreground);
+
+$primary: var(--primary);
+$primary-foreground: var(--primary-foreground);
+$secondary: var(--secondary);
+$secondary-foreground: var(--secondary-foreground);
+$accent: var(--accent);
+$accent-foreground: var(--accent-foreground);
+
+$success: var(--success);
+$success-foreground: var(--success-foreground);
+
+$danger: var(--danger);
+$danger-foreground: var(--danger-foreground);
+
+$warning: var(--warning);
+$warning-foreground: var(--warning-foreground);
+
+$info: var(--info);
+$info-foreground: var(--info-foreground);
+
+$color-text1: var(--color-text1); /* 기본 텍스트 색상 */
+$color-text2: var(--color-text2); /* 서브 텍스트 색상 */
+$color-text3: var(--color-text3); /* 강조 텍스트 색상 */
+$color-gray1: var(--color-gray1);
+$color-gray2: var(--color-gray2);
+
+/* Basic Element */
+$header-height: var(--header-height);
+$border: var(--border);
+$input: var(--input);
+$ring: var(--ring);
+$radius: var(--radius);
+
+/* Theme  */
+$font-family-base: var(--font-family-base);
+$font-family-base-eng: var(--font-family-base-eng);
+$font-family-serif: var(--font-family-serif);
+$font-family-monospace: var(--font-family-monospace);
+$font-family-number: var(--font-family-number);
+$font-family-mobile: var(--font-family-mobile);
+
+$font-size-base: var(--font-size-base);
+$font-size-2xs: var(--font-size-2xs);
+$font-size-xs: var(--font-size-xs);
+$font-size-sm: var(--font-size-sm);
+$font-size-lg: var(--font-size-lg); /* 본문(Markdown)의 기본 글씨크기 */
+$font-size-xl: var(--font-size-xl);
+$font-size-2xl: var(--font-size-2xl);
+
+$h1: var(--h1);
+$h2: var(--h2);
+$h3: var(--h3);
+$h4: var(--h4);
+$h5: var(--h5);
+$h6: var(--h6);
+
+$font-weight-lighter: var(--font-weight-lighter);
+$font-weight-light: var(--font-weight-light);
+$font-weight-normal: var(--font-weight-normal);
+$font-weight-bold: var(--font-weight-bold);
+$font-weight-bolder: var(--font-weight-bolder);
+$font-weight-serif-light: var(--font-weight-serif-light);
+$font-weight-serif-normal: var(--font-weight-serif-normal);
+$font-weight-serif-bold: var(--font-weight-serif-bold);
+$font-weight-serif-bolder: var(--font-weight-serif-bolder);
+
+/* Components */
+$card: var(--card);
+$card-foreground: var(--card-foreground);
+
+$blockquote: var(--blockquote);
+$blockquote-foreground: var(--blockquote-foreground);
+
+$code: var(--code);
+$code-foreground: var(--code-foreground);
+
+$popover: var(--popover);
+$popover-foreground: var(--popover-foreground);
+$muted: var(--muted);
+$muted-foreground: var(--muted-foreground);
+
+$table: var(--table);
+$table-th: var(--table-th);
+$table-foreground: var(--table-foreground);
+$box-shadow: var(--box-shadow);
+
+// 반응형 breakpoint
+//////////////////////////////////////
+
+// 모바일
+$breakpoint-mobile: 335px;
+
+// 모바일에서 태블릿
+$breakpoint-tabletToMobile: 535px;
+
+// 태블릿
+$breakpoint-tablet: 720px;
+
+// 태블릿에서 노트북
+$breakpoint-laptopToTablet: 960px;
+
+// 노트북
+$breakpoint-laptop: 1024px;
+
+// 노트북에서 데스크탑
+$breakpoint-desktopToLaptop: 1500px;
+
+// 데스크탑
+$breakpoint-desktop: 1800px;

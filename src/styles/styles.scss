@@ -1,0 +1,155 @@
+// 아래의 변수 임포트는 next.config.mjs 에서 광역적으로 했음
+@import './_variables.scss';
+@import './mixins/mixins.scss';
+@import './markdown.scss';
+
+////////////////////////////////////////////////////////////////////////////////////////
+// 사이트 적용 SCSS
+////////////////////////////////////////////////////////////////////////////////////////
+
+html {
+  height: 100%;
+  scroll-margin-top: 5rem;
+  scroll-margin-bottom: 5rem;
+  scroll-behavior: smooth;
+  body {
+    font-family: $font-family-base;
+    font-weight: $font-weight-normal;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: $color-text1;
+    .header {
+      .logo {
+        font-family: $font-family-monospace;
+        .ux {
+          font-family: 'Rubik Bubbles';
+        }
+      }
+    }
+  }
+}
+
+// Detail
+.embed-responsive {
+  iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+// 사이드바 메뉴
+.sidebar-category {
+  .ps-sidebar-root {
+    .ps-menu-button {
+      &.ps-active {
+        &:not(.ps-open) {
+          .ps-active {
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}
+
+// 사이드바 태그 메뉴
+.sidebar-tags {
+  ul {
+    li {
+      &.active {
+        a {
+          font-weight: bold;
+          color: $primary;
+        }
+      }
+    }
+  }
+}
+
+// 태블릿에서 노트북
+@include laptop {
+  .header {
+    background-position: calc(50% - 38px) center !important;
+  }
+}
+
+// 태그의 숫자에 따른 크기와 색상 스타일 지정
+.stage_1 {
+  font-size: calc($font-size-base * 0.8);
+}
+.stage_2 {
+  font-size: calc($font-size-base * 0.9);
+}
+.stage_3 {
+  font-size: $font-size-base;
+  color: #65a30d;
+}
+.stage_4 {
+  font-size: calc($font-size-base * 1.2);
+  color: #16a34a;
+}
+.stage_5 {
+  font-size: calc($font-size-base * 1.4);
+  color: #059669;
+}
+.stage_6 {
+  font-size: calc($font-size-base * 1.6);
+  color: #0d9488;
+}
+.stage_7 {
+  font-size: calc($font-size-base * 1.8);
+  color: #0891b2;
+}
+.stage_8 {
+  font-size: calc($font-size-base * 2);
+  color: #0284c7;
+}
+.stage_9 {
+  font-size: calc($font-size-base * 2.2);
+  color: #2563eb;
+}
+.stage_10 {
+  font-size: calc($font-size-base * 2.4);
+  color: #4f46e5;
+}
+.stage_11 {
+  font-size: calc($font-size-base * 2.6);
+  color: #7c3aed;
+}
+.stage_12 {
+  font-size: calc($font-size-base * 2.8);
+  color: #9333ea;
+}
+.stage_13 {
+  font-size: calc($font-size-base * 3);
+  color: #c026d3;
+}
+.stage_14 {
+  font-size: calc($font-size-base * 3.1);
+  color: #db2777;
+}
+.stage_15 {
+  font-size: calc($font-size-base * 3.2);
+  color: #e11d48;
+}
+
+// 숨쉬는 로고 만들기
+.logoBreathe {
+  @include breathe(3s);
+}
+
+// 로고를 서서히 보이게 해서 처음 틀어져 보이는 것을 보완함
+.logoLoding {
+  opacity: 0;
+  animation: fade-in 1s ease-in-out 0.5s forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

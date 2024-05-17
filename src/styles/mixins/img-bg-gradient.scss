@@ -1,0 +1,75 @@
+// 설명   : 이미지가 있는 DIV의 위에 글씨가 잘 보이도록 상단 또는 하단에 투명그라데이션을 깔아줍니다.
+// 사용법 :  @include img-bg-gradient(top);
+
+@mixin img-bg-gradient($direction) {
+    $start: rgba(0, 0, 0, 0.5);
+    $end: rgba(0, 0, 0, 0);
+
+    @if $direction == 'top' {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, $start, $end, $end, $end);
+            // z-index: 2;
+            z-index: 0;
+        }
+    } @else if $direction == 'top-bottom' {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, $start, $start, $end, $end, $end, $end, $end);
+            z-index: 1;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, $start, $end, $end, $end, $end, $end, $end, $end, $end);
+            z-index: 0;
+        }
+    } @else if $direction == 'bottom-top' {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to bottom, $start, $end, $end, $end, $end, $end, $end, $end, $end);
+            z-index: 0;
+        }
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, $start, $start, $end, $end, $end, $end, $end);
+            z-index: 1;
+        }
+    } @else if $direction == 'bottom' {
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, $start, $end, $end, $end);
+            // z-index: 2;
+            z-index: 0;
+        }
+    }
+}

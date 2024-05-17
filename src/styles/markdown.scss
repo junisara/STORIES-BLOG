@@ -1,0 +1,370 @@
+/*////////////////////////////////////////////////////////////////////
+// 
+// 내용 : Markdown으로 정의할 본문 SCSS
+// 
+////////////////////////////////////////////////////////////////////*/
+
+// Heading 정의 시작
+.markdown {
+  color: $color-text1;
+  // margin-bottom: 1rem;
+  margin-top: 1.5rem;
+  line-height: 1.75;
+  letter-spacing: -0.04em;
+  font-size: $font-size-lg;
+  font-family: $font-family-base;
+  font-weight: $font-weight-normal;
+  h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    // padding: 0.5em 0;
+    //   line-height: $h1 * 1.5;
+    letter-spacing: -0.05em;
+    text-align: center;
+    font-size: $h1;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    color: $color-text1;
+    &:before {
+      content: '. . . . . .  . . . . . .';
+      margin-bottom: 2rem;
+      font-size: 1rem;
+      color: $color-text1;
+    }
+  }
+  h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5em 0;
+    letter-spacing: -0.02rem;
+    line-height: calc($h2 * 1.5);
+    font-family: $font-family-base;
+    font-size: $h2;
+    font-weight: $font-weight-normal;
+    color: $color-text1;
+    &:before {
+      content: '';
+      text-align: left;
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      border-bottom: 1px solid $border;
+    }
+    &:after {
+      content: '';
+      text-align: right;
+      flex-grow: 1;
+      margin-left: 0.5rem;
+      border-bottom: 1px solid $border;
+    }
+  }
+  h3 {
+    margin-top: 1.5rem;
+    padding: 0.5em 0 0.1em 0;
+    line-height: calc($h3 * 1.5);
+    letter-spacing: -0.02rem;
+    font-family: $font-family-base;
+    font-size: $h3;
+    font-weight: $font-weight-bold;
+    color: $color-text1;
+  }
+  h4 {
+    margin-top: 1rem;
+    padding: 0.5em 0 0.1em 0;
+    line-height: calc($h4 * 1.5);
+    letter-spacing: -0.02rem;
+    font-size: $h4;
+    font-family: $font-family-base;
+    font-weight: $font-weight-bold;
+    color: $color-text1;
+  }
+  h5 {
+    margin-top: 1rem;
+    padding: 0.5em 0 0.1em 0;
+    line-height: calc($h5 * 1.5);
+    letter-spacing: -0.02rem;
+    font-family: $font-family-base;
+    font-size: $h5;
+    font-weight: $font-weight-bold;
+    color: $primary;
+  }
+  h6 {
+    margin-top: 1rem;
+    padding: 0.5em 0 0.1em 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    line-height: calc($h6 * 1.5);
+    letter-spacing: -0.02rem;
+    font-family: $font-family-base;
+    font-size: $h6;
+    font-weight: $font-weight-bold;
+    color: $color-text1;
+  }
+} // Heading 정의 끝
+
+// 기본 태그 정의 시작
+.markdown {
+  img {
+    max-width: 100%;
+    margin: 1rem auto;
+    padding: 0.1rem;
+    border: 1px solid $border;
+    &:hover {
+      box-shadow: $box-shadow;
+    }
+  }
+  a {
+    position: relative;
+    font-weight: $font-weight-normal;
+    color: $primary;
+    word-break: break-all;
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+    }
+  }
+  b,
+  strong {
+    position: relative;
+    font-weight: $font-weight-normal;
+    color: $color-text3;
+    z-index: 1;
+  }
+
+  ol,
+  ul {
+    line-height: 1.5;
+    font-size: $font-size-lg;
+    font-weight: $font-weight-light;
+    letter-spacing: 0;
+    margin: 1rem 0 2rem;
+  }
+
+  ol {
+    list-style-type: decimal-leading-zero;
+    li {
+      margin-left: 1.8rem;
+      padding-left: 0.2rem;
+      color: $color-text1;
+      &::marker {
+        font-size: $font-size-base;
+      }
+    }
+  }
+  ul {
+    list-style-type: disc;
+    li {
+      margin-left: 1.5rem;
+      padding-left: 0.5rem;
+      color: $color-text1;
+      &::marker {
+        font-size: $font-size-base;
+      }
+    }
+  }
+
+  table {
+    line-height: 1.5;
+    font-size: 1rem;
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-left: 1px solid $border;
+    margin: 1.5rem 0;
+    width: 100%;
+    font-family: $font-family-base;
+    font-size: $font-size-sm;
+    background: $table;
+    thead th {
+      padding: 0.3rem 0.5rem;
+      font-weight: $font-weight-bold;
+      word-break: keep-all;
+      vertical-align: top;
+      border-top: 1px solid $border;
+      border-right: 1px solid $border;
+      border-bottom: 2px solid $border;
+      background: $table-th;
+    }
+    tbody {
+      th {
+        padding: 0.3rem 0.5rem;
+        font-weight: $font-weight-bold;
+        word-break: keep-all;
+        vertical-align: top;
+        border-right: 1px solid $border;
+        border-bottom: 1px solid $border;
+        background: $table-th;
+      }
+      td {
+        padding: 0.3rem 0.5rem;
+        font-weight: $font-weight-normal;
+        vertical-align: top;
+        border-right: 1px solid $border;
+        border-bottom: 1px solid $border;
+        strong,
+        bold {
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  // code {
+  // color: $code-foreground;
+  // // background-color: $code;
+  // font-family: $font-family-monospace;
+  // font-weight: $font-weight-light;
+  // // font-size: 0.95em;
+  // letter-spacing: 0;
+  // padding: 0.05rem 0.5rem 0.1rem;
+  // border-radius: 0.3rem;
+  // }
+
+  // pre {
+  // font-size: $font-size-sm;
+  // letter-spacing: 0;
+  // overflow-x: auto;
+  // padding: 1rem 0;
+  // position: relative;
+  // display: block;
+  // margin: 0.7rem 0;
+  // border: 0;
+  // border-radius: 0.5rem;
+  // word-break: break-all;
+  // word-wrap: break-word;
+  // color: $code-foreground;
+  // background-color: $code;
+  // white-space: pre;
+
+  // code {
+  // background-color: inherit;
+  // font-size: inherit;
+  // counter-reset: line;
+  // > [data-line]::before {
+  //   counter-increment: line;
+  //   content: counter(line);
+
+  //   /* Other styling */
+  //   display: inline-block;
+  //   width: 1rem;
+  //   margin-right: 1rem;
+  //   text-align: right;
+  //   color: gray;
+  // }
+  // > [data-highlighted-line] {
+  //   background-color: rgba(248, 240, 128, 0.2);
+  // }
+  // &[data-line-numbers-max-digits="2"] {
+  //   > [data-line]::before {
+  //     width: 2rem;
+  //   }
+  // }
+  // &[data-line-numbers-max-digits="3"] {
+  //   > [data-line]::before {
+  //     width: 3rem;
+  //   }
+  // }
+  // }
+
+  // }
+
+  // Prizem.js의 pre
+  pre[class*='language-'] {
+    border-radius: 0.5rem;
+    margin: 1.6rem 0;
+    .language {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      font-size: $font-size-xs;
+      background: hsla(0, 0%, 100%, 0.2);
+      padding: 0 1rem;
+      border-radius: 0 0 0 0.5rem / 0 0 0 0.5rem;
+      cursor: pointer;
+    }
+  }
+
+  // pre가 없는 code
+  :not(pre) {
+    > code[class*='language-'] {
+      font-size: $font-size-sm;
+      vertical-align: text-bottom;
+      padding: 0.05rem 0.3rem 0.1rem;
+      background-color: $code;
+      color: $code-foreground;
+    }
+  }
+
+  blockquote {
+    color: $code-foreground;
+    background-color: $blockquote;
+    position: relative;
+    display: block;
+    padding: 1rem;
+    margin: 1rem 0;
+    font-family: $font-family-base;
+    line-height: 1.5;
+    font-size: 0.95em;
+    font-weight: $font-weight-normal;
+    text-align: justify;
+    border-left: 5px solid $border;
+    font-style: normal;
+    letter-spacing: 0;
+  }
+
+  emp {
+    position: relative;
+    display: block;
+    background: theme-color-main('300');
+    padding: 1rem 1.5rem;
+    margin: 2rem 3rem;
+    color: theme-color-main('900');
+    font-size: 1.2rem;
+    text-align: center;
+    border-left: 0.5rem solid $primary;
+    border-right: 0.5rem solid $primary;
+    // @include shadow(0, 2px, 4px, 0px, #000);
+  }
+} //.md close
+
+// Gatsby에 해당하는 특별 CSS
+
+.gatsby-resp-image-wrapper {
+  margin: 2rem 0 0.5rem 0;
+}
+
+// 데스크탑
+@include desktop {
+}
+
+// 노트북에서 데스크탑
+@include desktopToLaptop {
+}
+
+// 노트북
+@include laptop {
+}
+
+// 태블릿에서 노트북
+@include laptopToTablet {
+}
+
+// 태블릿
+@include tablet {
+}
+
+// 모바일에서 태블릿
+@include tabletToMobile {
+}
+
+// 모바일
+@include mobile {
+}

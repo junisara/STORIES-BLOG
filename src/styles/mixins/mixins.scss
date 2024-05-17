@@ -1,0 +1,146 @@
+@import './img-bg-gradient.scss';
+@import './responsive.scss';
+
+
+
+// 세로 정렬
+// top    : flex-start
+// middle : center
+// bottom : flex-end
+// 사용법 : @include vertical-align(center);
+@mixin vertical-align($pos) {
+    display: flex;
+    align-items: $pos;
+    // justify-content: center;
+}
+
+// 그림자
+// 사용법 : @include shadow();
+// $h : 가로 그림자 높이
+// $v : 세로 그림자 높이
+// $blur : 번짐
+// $spread : 퍼짐 길이
+// $sdcolor : 색상
+@mixin shadow($h: 2px, $v: 2px, $blur: 3px, $spread: 2px, $sdcolor: #000) {
+    box-shadow: $h $v $blur $spread rgba($sdcolor, 0.2), 0 $v + 2 $blur + 4 $spread rgba($sdcolor, 0.2);
+}
+
+// 멀티라인 말줄임 표시
+// $line-cnt : 라인 수
+// $line-height : line-height값
+// 사용법 : @include ellipsis(3, 1.6em);
+@mixin ellipsis($line-cnt, $line-height: 1.6em) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $line-cnt; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    line-height: $line-height;
+    max-height: $line-height * $line-cnt; /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}
+
+// 숨쉬기 애니메이션
+// $second : 로테이션 시간
+// 사용법 : @include breathe(3s); 으로 해당 scss에 직접 넣어주면됨
+@mixin breathe($second, $colorStart: inherit, $colorEnd: inherit) {
+    -webkit-animation: breathe $second infinite both ease-in-out;
+    -moz-animation: breathe $second infinite both ease-in-out;
+    @keyframes breathe {
+        0% {
+            -webkit-transform: scale(1);
+            color: $colorStart;
+        }
+        40% {
+            -webkit-transform: scale(0.8);
+            color: $colorEnd;
+        }
+        100% {
+            -webkit-transform: scale(1);
+            color: $colorStart;
+        }
+    }
+    @-webkit-keyframes breathe {
+        0% {
+            -webkit-transform: scale(1);
+            color: $colorStart;
+        }
+        40% {
+            -webkit-transform: scale(0.8);
+            color: $colorEnd;
+        }
+        100% {
+            -webkit-transform: scale(1);
+            color: $colorStart;
+        }
+    }
+}
+
+// 숨쉬기 애니메이션 취소
+// 사용법 : @include no-breathe();
+@mixin no-breathe() {
+    -webkit-animation: none;
+    -moz-animation: none;
+}
+
+// A에 대한 믹스인
+// $text-color : 글자의 색상
+// $hover-color: hover일때 색상 생략기 기본 값적용
+// 사용법 : @include a-variant(#f32, #000);
+@mixin a-variant($text-color, $hover-color: 'nocolor') {
+    color: $text-color;
+    @if $hover-color== 'nocolor' {
+        &:hover {
+            color: darken($text-color, 15%);
+        }
+    } @else {
+        &:hover {
+            color: $hover-color;
+        }
+    }
+}
+
+// 댓글에 사용한 말박스
+// $text-color : 글자의 색상
+// $bg-color   : 말박스 배경색
+// 사용법 : @include custom-panel-variant(#f32, #ddd);
+@mixin custom-panel-variant($text-color, $bg-color) {
+    .s_rp_rep {
+        border-color: darken($bg-color, 7%) !important;
+        background: $bg-color !important;
+        color: $text-color;
+        &:before {
+            border-top: 1px solid darken($bg-color, 7%) !important;
+            border-left: 1px solid darken($bg-color, 7%) !important;
+            background: $bg-color !important;
+        }
+        .tit_nickname {
+            a {
+                color: darken($text-color, 10%) !important;
+                &:hover {
+                    color: $text-color !important;
+                }
+            }
+        }
+        .txt_date {
+            float: right;
+            /*font-size: 1.2rem;*/
+            color: lighten($text-color, 5%);
+        }
+        .txt_reply {
+            color: $text-color;
+            font-weight: 300;
+        }
+        .my_edit {
+            text-align: right;
+            a {
+                color: darken($text-color, 15%);
+            }
+            .btn-secondary {
+                background: darken($bg-color, 15%);
+                border-color: darken($bg-color, 20%);
+                color: darken($text-color, 15%);
+            }
+        }
+    }
+}
