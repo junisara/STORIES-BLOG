@@ -46,7 +46,7 @@ export const PostHeader: React.FC<PostHeaderProps> = ({ frontmatter, etcmatter, 
           /
           <Clock3 className="w-3.5" />
           <span>
-            읽는데 <b>{etcmatter.readingMinutes}분</b> 정도 소요 예정
+            대략 <b>{etcmatter.readingMinutes}분</b> 정도 소요
           </span>
         </div>
       </div>
