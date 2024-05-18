@@ -1,7 +1,7 @@
 ---
-title: '[가평-청평] 커피도 마시고 사진도 찍을 수 있는 스튜디오 컨셉의 화이트아프리카(white Africa)'
+title: '[가평-청평] 사진 스튜디오 컨셉 카페 화이트아프리카(white Africa)'
 blogName: stories
-publish: draft
+publish: published
 taxonomy:
   category: 여행이야기
   tag:
