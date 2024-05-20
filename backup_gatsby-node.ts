@@ -93,7 +93,7 @@ exports.createPages = async ({ graphql, actions, reporter }: { graphql: any; act
 
   const categoryTemplate = path.resolve(`src/containers/Category/category-post-list.tsx`)
   const tagTemplate = path.resolve('src/containers/Tags/tag-post-list.tsx')
-  const postTemplate = path.resolve('src/containers/Post/post-detail.tsx')
+  const postTemplate = path.resolve('src/containers/Post/post-md-detail.tsx')
 
   /******************************************
    *  Category 페이지 만들기

@@ -8,6 +8,10 @@ import matter from 'gray-matter'
 import { dirname } from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
+// import * as utils from 'gatsby-core-utils'
+// const slash = utils.slash
+
+// const { slash } = require(`gatsby-core-utils`)
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const envPath = `.env.${process.env.NODE_ENV}`
@@ -35,7 +39,7 @@ export const onCreateWebpackConfig = ({ actions }) => {
 
 export const createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
-  const result = await graphql(`
+  const resultMD = await graphql(`
     query CategoryTagsQuery {
       allDirectory(filter: { base: { nin: ["images", "pages", "_POSTS"] }, absolutePath: { regex: "/^(?!.*[0-9]{8}_)/" } }, sort: { absolutePath: ASC }) {
         nodes {
@@ -80,13 +84,30 @@ export const createPages = async ({ graphql, actions, reporter }) => {
     }
   `)
 
-  if (result.errors) {
-    reporter.panicOnBuild(`There was an error loading your category list`, result.errors)
+  // query content for WordPress posts
+  const resultWP = await graphql(`
+    query WordpressQuery {
+      allWpPost {
+        nodes {
+          id
+          uri
+        }
+      }
+    }
+  `)
+
+  if (resultMD.errors) {
+    reporter.panicOnBuild(`There was an error loading your markdown list`, resultMD.errors)
+    return
+  }
+  if (resultWP.errors) {
+    reporter.panicOnBuild(`There was an error loading your wordpress list`, resultWP.errors)
     return
   }
 
-  const paths = result.data.allDirectory.nodes
-  const posts = result.data.allMdx.edges
+  const paths = resultMD.data.allDirectory.nodes
+  const posts = resultMD.data.allMdx.edges
+  const WPposts = resultWP.data.allWpPost.nodes
 
   const categoryList = paths.map(path => {
     const categorypath = path.absolutePath.split('/')
@@ -98,7 +119,8 @@ export const createPages = async ({ graphql, actions, reporter }) => {
 
   const categoryTemplate = path.resolve(`src/containers/Category/category-post-list.tsx`)
   const tagTemplate = path.resolve('src/containers/Tags/tag-post-list.tsx')
-  const postTemplate = path.resolve('src/containers/Post/post-detail.tsx')
+  const postTemplate = path.resolve('src/containers/Post/post-md-detail.tsx')
+  const wpPostTemplate = path.resolve('src/containers/Post/post-wp-detail.tsx')
 
   /******************************************
    *  Category 페이지 만들기
@@ -140,7 +162,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
   })
 
   /******************************************
-   *  Posts 페이지 만들기
+   * Markdown Posts 페이지 만들기
    ******************************************/
   if (posts.length > 0) {
     posts.forEach((post, index) => {
@@ -160,13 +182,27 @@ export const createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
-}
 
+  /******************************************
+   * Wordpress Posts 페이지 만들기
+   ******************************************/
+  if (WPposts.length > 0) {
+    WPposts.forEach(post => {
+      createPage({
+        path: post.uri,
+        component: wpPostTemplate,
+        context: {
+          id: post.id,
+        },
+      })
+    })
+  }
+}
 /**
  * @type {import('gatsby').GatsbyNode['createPages']}
  */
 // exports.createPages = async ({ graphql, actions, reporter }:{ graphql:any, actions:any, reporter:any }) => {
-//   const result = await graphql(`
+//   const resultMD = await graphql(`
 //     query tagsQuery {
 //       allMdx(sort: {frontmatter: {datePublished: ASC}}, limit: 1000) {
 //         nodes {
@@ -182,7 +218,7 @@ export const createPages = async ({ graphql, actions, reporter }) => {
 //     }
 //   `)
 //   const { createPage } = actions;
-//   const posts = result.data.allMdx.nodes;
+//   const posts = resultMD.data.allMdx.nodes;
 //   let tags = new Set() // 3. set to store tags
 //   if (posts.length > 0) {
 //     posts.forEach((post:any) => {

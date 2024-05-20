@@ -2,6 +2,7 @@
 
 # dependencies
 /.cache
+/.wordpress-cache
 /.SynologyWorkingDirectory
 /node_modules
 /public
