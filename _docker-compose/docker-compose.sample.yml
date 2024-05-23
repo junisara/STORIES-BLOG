@@ -2,70 +2,98 @@ version: '3.3'
 
 #########################
 # 1. docker-compose
+# 2. Dockerfile로 빌드후 실행해야함
+#    > sudo docker-compose up --build -d
+#
+# 꼭 설치후 방화벽을 열어줘야만 DB, WP, Adminer가 접근이 가능함
 #########################
 
 # 컨테이너 서비스
 services:
   # proxy 설정
-  proxy:
+  wordpress_proxy:
     image: nginx
     ports:
-      - 80:80
-      - 443:443
+      - 8000:80 # 실제 8000포트로 서비스 됨(default.conf 설정에서 9000포트의 WP(PHP)를 가져와서..)
+      - 8443:443
     volumes:
-      - proxy/default.conf:/etc/nginx/conf.d/default.conf
-      - proxy/nginx.conf:/etc/nginx/nginx.conf
-      - cert:/app/cert
-      - web:/var/www/html
+      - ./wordpress_proxy/default.conf:/etc/nginx/conf.d/default.conf
+      - ./wordpress_proxy/nginx.conf:/etc/nginx/nginx.conf
+      - ./wordpress_proxy_cert:/app/cert
+      - ./wordpress:/var/www/html
     restart: always
     depends_on:
-      - blog
+      - wordpress
     networks:
-      - web-network
+      - stories-network
 
-  # web
-  blog:
-    image: wordpress:6.5.3-php8.3-fpm
+  # wordpress
+  wordpress:
+    # image: wordpress:6.5.3-php8.3-fpm
+    build:
+      context: ./_PHP_custom # Dockerfile이 있는 경로
+      dockerfile: Dockerfile
     user: '1000'
     environment:
-      WORDPRESS_DB_HOST: db:3306
-      WORDPRESS_DB_USER: /run/secrets/blog_db_user
-      WORDPRESS_DB_PASSWORD: /run/secrets/blog_db_password
-      WORDPRESS_DB_NAME: 'blog'
+      WORDPRESS_DB_HOST: wordpress_db:3306
+      WORDPRESS_DB_USER: wdpress
+      WORDPRESS_DB_PASSWORD: wdpresspass
+      WORDPRESS_DB_NAME: wordpress_db
+    ports:
+      - 9000:9000
     volumes:
-      - web:/var/www/html
+      - ./wordpress:/var/www/html
     restart: always
     depends_on:
-      - db
+      - wordpress_db
     networks:
-      - web-network
+      - stories-network
 
   # db
-  db:
+  wordpress_db:
     image: mysql:8.0
-    cap_add:
-      - SYS_NICE
+    # cap_add:
+    #   - SYS_NICE
     environment:
-      MYSQL_DATABASE: blog
-      MYSQL_USER: /run/secrets/blog_db_user
-      MYSQL_PASSWORD: /run/secrets/blog_db_password
-      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_DATABASE: wordpress_db
+      MYSQL_USER: wdpress
+      MYSQL_PASSWORD: wdpresspass
+      MYSQL_ROOT_PASSWORD: junisara!1
+    ports:
+      - '3306:3306'
     volumes:
-      - db/mysql:/var/lib/mysql:rw
+      - ./wordpress_db:/var/lib/mysql
     restart: always
     networks:
-      - web-network
+      - stories-network
+    # healthcheck:
+    #   test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
 
-# doker-compose.yml 위치에 db
-secrets:
-  blog_db_password:
-    file: db/pwd
-  blog_db_user:
-    file: db/use
+  # db 모니터링
+  wordpress_adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - wordpress_db
+    networks:
+      - stories-network
+
+volumes:
+  wordpress:
+  wordpress_db:
+  wordpress_proxy:
+  wordpress_proxy_cert:
 
 networks:
-  web-network:
+  stories-network:
     driver: bridge
+#
+#
 #########################
 # 2. proxy/default.conf
 #########################
